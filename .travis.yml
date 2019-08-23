@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm test
+deploy:
+  provider: heroku
+  app: vue-test-app
+  api_key:
+    secure: N6ENER7KYjwPuEa5TczJJNaShgPEFRUE32SXLcYnRiFmsUhfDM5lPGk+NFnKYOzKxtKZYp5FRTsaaN0ZkO5QZTACOsPOpGddvVByHCx66Iq4qaipjmzoEpAh/+QKwFjFxxFqDK/DAMmKhcMjl861Jn+w3PJh+1UO77ohCqC3ol27R2ZcbwUtftpHZzFMjBn4BpwHqRpIffShwhLSm+VIqpcuw0okM9APF09KBRRakc0g0yEBMvJGn7In7byQsX0TsAdWl4dssSr1UzwEyvUffLb/LkUqUkFUKhlV5t1/inyum9rX4zmpmfzEEZpn4xzyQhg2kw5/Crkud/urclIwLRKTSuB3ZwYlHqTtNZsB9ZdilzXrKNed32T7aexDwm1OkEwHJrOXaYwLlpyHT9ezyIoVvzNrEyT9zZ948uAq2ZnuYILf6PG03KO24avnlluCS37INhb8mkPCfY3/A6nnc6++bRFLEEhUH9oc63/pOhV+eqYCFLOKFNCcwgr5cQQ+amWi7T/LdPClUPuQucNlBqqI13My5VBEyYURtWKkbKFIpuknkzSAvjiFz5Xz+FP9xeoFJgkWcWbdPK6bNBiXKtBTH0YufNFDz+o+FK+9Q7X1U0Pi1NspA/Z/Zsnn3rhCrkJ3i5uZJ0ihF2WpkErXVN1k21g1O71zfs4TkWaUww0=
+  on:
+    repo: degreeproject/vue-fulltest-app
+    branch: master
