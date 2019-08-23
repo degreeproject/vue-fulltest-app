@@ -8,7 +8,7 @@ script:
 - npm test
 deploy:
   provider: heroku
-  app: vue-test-app
+  app: vue-fulltest-app
   api_key:
     secure: kwgdU1DmodKanKkWhVGI2uckDAxKGfs2rouBnQkMd4FlFoWnM3yZ/oBWQGbpxhiDGdOVmh31sGVrZPlXAheRYzUgGFuLCfSbIGkLj4vSF0VKV/Lu127bQ1ZirdgwtiRp636vtdl8iy54OOTu7xGbY2NNVFK87dNVorgstOXLxf188NK86ktWk+DamAq+yUhYjbvBkk3tEcyytQz6AqqX6HOJ/sKxKnTfAM+WuhQFG4eBOku++piaIKKOVTlgSsUeMzCyt3g13JvJNM0puu43wht79z0C+rFBkMgVAUZr7C5pp3EHp85G0hPCis2PZdODMThVplcxH76AIo4mXhal0p3xz5Ju/0LsIV/t3Cbo2v7cu7u6CL+8Zz6TRanOFrdXmLjG8NTHnhjrBouPdLZ5h+/kbaCoriuzISJGIt9tN9ZMTYwaATuQ0CLeVY7WHSm3tnyEGxHR98bYxsF4kBjApVW2ZWabxD9Uh1Vbln6AdqbO4gHAEC8VjoH8OZkYqOH7un7nnsMYuevVUiwZUGw1O6X9r37FowhIjhUxwA/Hztqzasxd6bN+WUNX1N+I7ECM7m6NLyTfPXv65rlXMGjzR091C88jnI5wcAys4WRlmGbJseEu2sw2/P+VVbTC5wxD3rZ/2bFxAhC3EaWtkMR7d5RqiSUWASv5APwOsaTzaAg=
   on:
