@@ -2,16 +2,19 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to the test App jobba dååååååakakakaååå"/>
+    <UserTestComponent></UserTestComponent>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import UserTestComponent from './components/UserTestComponent.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    UserTestComponent
   }
 }
 </script>

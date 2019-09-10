@@ -6,11 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
     "lint": "vue-cli-service lint"
   },
+  "proxy": "http://localhost:5002",
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "express": "^4.17.1",
+    "mongodb": "^3.3.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
