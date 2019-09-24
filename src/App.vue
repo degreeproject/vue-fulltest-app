@@ -1,31 +1,22 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to the test App jobba dååååååakakakaååå"/>
-    <UserTestComponent></UserTestComponent>
-  </div>
+    <v-app id="inspire">
+    <Header></Header>
+    <v-content>
+      <router-view/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import UserTestComponent from './components/UserTestComponent.vue'
+import Header from './components/HeaderComponent'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld,
-    UserTestComponent
-  }
-}
+    Header,
+  },
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
