@@ -7,8 +7,8 @@ const config = require('../../config');
  * GET: a single users basic information
  */
 router.get('/', async (req, res) => {
-      const recipe = await recipeService.getRecipes();
-      return res.json(recipe);
+      const recipes = await recipeService.getRecipes();
+      return res.json(recipes);
     });
 
 module.exports = router;

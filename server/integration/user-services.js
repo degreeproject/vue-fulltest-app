@@ -8,7 +8,7 @@ class UserService {
   static async loadUserCollection() {
     const client = await mongodb.MongoClient.connect(config.MONGODB_URI, {
       useNewUrlParser: true,
-      useUnifiedTopology: true 
+      useUnifiedTopology: true
     });
     return client.db('kex-test-app').collection('users');
   }
