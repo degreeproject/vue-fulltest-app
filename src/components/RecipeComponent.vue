@@ -17,10 +17,10 @@ import RecipeService from '../services/RecipeService.js'
     name: 'RecipeComponent',
     props: [],
     mounted() {
-      this.recipes = RecipeService.getRecipes()
-      // .then((res) => {
-      //   this.recipes = res;
-      // })
+      RecipeService.getRecipes()
+      .then((res) => {
+        this.recipes = res;
+      })
     },
     data() {
       return {
