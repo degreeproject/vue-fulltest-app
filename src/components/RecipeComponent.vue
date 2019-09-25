@@ -19,7 +19,7 @@ import RecipeService from '../services/RecipeService.js'
     mounted() {
       RecipeService.getRecipes()
       .then((res) => {
-        this.recipes = res;
+        this.recipes = res.data;
       })
     },
     data() {
