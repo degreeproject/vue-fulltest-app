@@ -1,13 +1,13 @@
-import axios from 'axios';
+//import axios from 'axios';
 
-const RECIPES = 'api/recipe';
+//const RECIPES = 'api/recipe';
 
 class RecipeService {
   /**
    * Gets necessary information for application receipt
    */
   static getRecipes(){
-    return axios.get(RECIPES)
+    return {'name': 'namn'}
   }
 
 }
