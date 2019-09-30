@@ -25,4 +25,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname + "/../dist/index.html"))
   });
 }
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -16,36 +16,33 @@
 </template>
 
 <script>
-import AuthService from '../../services/AuthService.js'
-  export default  {
-    name: 'LoginForm',
-    props: [],
-    mounted() {
-    },
-    data: () => ({
-      username: '',
-      password: ''
-    }),
+import AuthService from "../../services/AuthService.js";
+export default {
+  name: "LoginForm",
+  props: [],
+  mounted() {},
+  data: () => ({
+    username: "",
+    password: ""
+  }),
 
-    methods: {
-      login () {
-        AuthService.loginUser({
-          'username': this.username,
-          'password': this.password
-          })
-        this.$refs.form.reset();
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
+  methods: {
+    login() {
+      AuthService.loginUser({
+        username: this.username,
+        password: this.password
+      });
+      this.$refs.form.reset();
     },
-    computed: {
+    reset() {
+      this.$refs.form.reset();
     }
-}
+  },
+  computed: {}
+};
 </script>
 
 <style scoped>
-  .RecipeComponent {
-
-  }
+.RecipeComponent {
+}
 </style>

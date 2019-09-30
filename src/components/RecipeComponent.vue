@@ -12,33 +12,26 @@
 </template>
 
 <script>
-import RecipeService from '../services/RecipeService.js'
-  export default  {
-    name: 'RecipeComponent',
-    props: [],
-    mounted() {
-      RecipeService.getRecipes()
-      .then((res) => {
-        this.recipes = res.data;
-      })
-    },
-    data() {
-      return {
-        recipes: [],
-
-      }
-    },
-    methods: {
-
-    },
-    computed: {
-
-    }
-}
+import RecipeService from "../services/RecipeService.js";
+export default {
+  name: "RecipeComponent",
+  props: [],
+  mounted() {
+    RecipeService.getRecipes().then(res => {
+      this.recipes = res.data;
+    });
+  },
+  data() {
+    return {
+      recipes: []
+    };
+  },
+  methods: {},
+  computed: {}
+};
 </script>
 
 <style scoped>
-  .RecipeComponent {
-
-  }
+.RecipeComponent {
+}
 </style>
