@@ -24,10 +24,10 @@
       </template>
 
       <v-list>
-        <v-list-item>
+        <v-list-item to="login">
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>
-        <v-list-item>
+        <v-list-item to="register">
           <v-list-item-title>Register</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -40,9 +40,6 @@
 <script>
   export default {
     name: 'HeaderComponent',
-    props: {
-
-    }
   }
 </script>
 
