@@ -1,38 +1,55 @@
 <template lang="html">
+<div>
+  <span v-if="invalidSubmit">Something went wrong with the login, please try again.</span>
+  <v-form ref="form" lazy-validation>
+      <v-text-field v-model="form.username" :counter="16" label="Username" required></v-text-field>
+      <v-text-field type="password" v-model="form.password" label="Password" required></v-text-field>
+      
+    <v-btn color="success" class="mr-4" @click="onSubmit">
+      Login
+    </v-btn>
 
-<v-form ref="form" lazy-validation>
-    <v-text-field v-model="username" :counter="16" label="Username" required></v-text-field>
-    <v-text-field type="password" v-model="password" label="Password" required></v-text-field>
-    
-  <v-btn color="success" class="mr-4" @click="login">
-    Login
-  </v-btn>
-
-  <v-btn color="error" class="mr-4" @click="reset">
-    Reset
-  </v-btn>
-</v-form>
+    <v-btn color="error" class="mr-4" @click="reset">
+      Reset
+    </v-btn>
+  </v-form>
+</div>
 
 </template>
 
 <script>
 import AuthService from "../../services/AuthService.js";
+import { mapActions } from "vuex";
+import Store from "../../store";
 export default {
   name: "LoginForm",
   props: [],
-  mounted() {},
+  mounted() {
+    Store.userModule;
+  },
   data: () => ({
-    username: "",
-    password: ""
+    invalidSubmit: false,
+    form: {
+      username: "",
+      password: ""
+    }
   }),
 
   methods: {
-    login() {
-      AuthService.loginUser({
-        username: this.username,
-        password: this.password
-      });
-      this.$refs.form.reset();
+    ...mapActions("userModule", ["logIn"]),
+    async onSubmit(evt) {
+      evt.preventDefault();
+      try {
+        await AuthService.loginUser(this.form).then(data => {
+          this.logIn({
+            name: data.name,
+            token: `${data.token_type} ${data.access_token}`
+          });
+        });
+        this.$router.push("/home");
+      } catch (err) {
+        this.invalidSubmit = true;
+      }
     },
     reset() {
       this.$refs.form.reset();
