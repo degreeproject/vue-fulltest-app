@@ -2,7 +2,7 @@
     <v-app id="inspire">
     <Header></Header>
     <v-content>
-      <v-container >
+      <v-container style="width: 75%" >
         <router-view/>
       </v-container>
     </v-content>

@@ -44,11 +44,27 @@
       </v-row>
       <v-divider></v-divider>
 
+      <span v-if="invalidSubmit">Something went wrong with the comment, please try again.</span>
+        <v-form ref="commentForm" v-model="valid" lazy-validation>
+          <v-row>
+            <v-col cols="12" md="10">
+              <v-text-field v-model="comment.comment" :counter="300" :rules="commentRules" label="Comment" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="2">
+              <v-btn :disabled="!valid" color="success" class="mr-4" @click="submitComment">
+                Submit
+              </v-btn>
+          </v-col>
+          </v-row>
+        </v-form>
+
+
+
       <v-row no-gutters cols="12">
         <v-col sm="12">
           <h3>Comments</h3>
           <v-list-item-content v-for="(comment, index) in this.recipe.comments" :key="index">
-            <v-list-item-title>{{comment.commentator}}</v-list-item-title>
+            <v-list-item-title id="commentator">{{comment.commentator}}</v-list-item-title>
             <v-list-item-content>{{comment.comment}}</v-list-item-content>
           </v-list-item-content>
         </v-col>
@@ -59,14 +75,25 @@
 
 <script>
     import RecipeService from "../services/RecipeService.js";
+    import {mapState} from 'vuex'
     export default {
       name: "RecipeComponent",
       props: [],
       data() {
         return {
+          valid: true,
+          invalidSubmit: false,
           recipe: {},
-          recipeId: this.$router.currentRoute.params.id
-        };
+          recipeId: this.$router.currentRoute.params.id,
+          comment: {
+            commentator: '',
+            comment: '',
+          },
+          commentRules: [
+          v => !!v || "A comment is required",
+          v => (v && v.length <= 300) || "The name must be less than 300 characters"
+        ],
+        }
       },
       mounted() {
         RecipeService.getRecipe(this.recipeId)
@@ -74,11 +101,32 @@
             this.recipe = res.data;
           });
       },
-      methods: {},
-      computed: {}
+      computed: {
+        ...mapState('userModule', ['user']),
+      },
+      methods: {
+        submitComment(){
+          let username = this.user.name
+          let comment = {
+            commentator: username,
+            comment: this.comment.comment
+          }
+          RecipeService.submitComment({
+              commentator: username,
+              comment: this.comment.comment,
+              recipe: this.recipe.id
+            })
+          .then(res => {
+            this.recipe.comments = this.recipe.comments.concat(comment)
+            return res;
+          });
+        }
+      },
     };
 </script>
 
 <style scoped>
-    .RecipeComponent {}
+#commentator{
+  font-weight: bold;
+}
 </style>

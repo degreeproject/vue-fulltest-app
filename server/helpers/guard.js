@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const config = require('../config');
@@ -8,12 +9,11 @@ const config = require('../config');
 const unauthorizedAccessPaths = [
   // Registring a user
   {route: /^\/api\/user$/, method: 'POST'},
+  {route: /^\/api\/user\/.*$/, method: 'GET'},
   // Trying to authenticate
   {route: /^\/api\/auth$/, method: 'GET'},
   // Get recipes
   {route: /^\/api\/recipe\/.*$/, method: 'GET'},
-  {route: /^\/api\/recipe$/, method: 'GET'},
-  //Get all users SHOULD BE REMOVED
   {route: /^\/api\/recipe$/, method: 'GET'},
 ];
 
@@ -92,6 +92,8 @@ router.all(/.*/, async (req, res, next) => {
     try {
       const { username } = await decodeUsername(token);
       req.userUsername = username;
+      console.log(route)
+      console.log(method)
       if (allowedSelfAction(route, method)) {
         return next();
       }
@@ -129,9 +131,10 @@ router.all(/.*/, async (req, res, next) => {
 
 /**
  * Specifies which actions may be taken only by oneself
- */ 
+ */
 const SELF_ACTIONS = [
   {route: /^\/api\/recipe$/, method: 'POST'},
+  {route: /^\/api\/recipe\/comment$/, method: 'POST'},
   // Means '/api/recipe/12331-12312 (ending in only numbers and dashes)
 ]
 

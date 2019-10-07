@@ -2,16 +2,18 @@
 <div>
   <span v-if="invalidSubmit">Something went wrong with the registration, please try again.</span>
   <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field v-model="this.recipes.name" :counter="30" :rules="nameRules" label="Title" required></v-text-field>
+      <v-text-field v-model="recipe.name" :counter="30" :rules="nameRules" label="Title" required></v-text-field>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="this.recipes.description" :counter="30" :rules="descriptionRules" label="Description" required></v-text-field>
+            <v-text-field v-model="recipe.description" :counter="30" :rules="descriptionRules" label="Description" required></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field v-model="recipe.image" :rules="imageRules" label="Image URL" required></v-text-field>
           </v-col>
         </v-row>
-      <v-text-field v-model="this.recipes.image" :rules="imageRules" label="Image URL" required></v-text-field>
-        <v-row v-for="(ingredient, index) in this.recipes.ingredient" :key="index">
+        <v-row v-for="(ingredient, index) in this.recipe.ingredient" :key="index">
           <v-col cols="12" md="5">
-              <v-text-field v-model="ingredient.name" :rules="ingredientNameRules" label="Ingredient" required></v-text-field>
+              <v-text-field v-model="ingredient.name" :rules="ingredientNameRules" :label="'Ingredient: ' + (index+1)" required></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
               <v-text-field v-model="ingredient.amount" :rules="ingredientAmountRules" label="Amount" required></v-text-field>
@@ -23,16 +25,28 @@
               <v-btn color="primary" @click="addIngredient">Add</v-btn>
           </v-col>
           <v-col cols="12" md="2" v-if="index !== 0">
-              <v-btn color="primary" @click="removeIngredient(index)">Remove</v-btn>
+              <v-btn color="error" @click="removeIngredient(index)">Remove</v-btn>
+          </v-col>
+        </v-row>
+        <v-row v-for="(step, index) in recipe.step" :key="((index + 1) * 100)">
+          <v-col cols="12" md="10">
+              <v-text-field v-model="step.description" :rules="ingredientNameRules" :label="'Instruction: ' + (index+1)" required></v-text-field>
+          </v-col>
+          <v-col cols="12" md="2" v-if="index === 0">
+              <v-btn color="primary" @click="addStep">Add</v-btn>
+          </v-col>
+          <v-col cols="12" md="2" v-if="index !== 0">
+              <v-btn color="error" @click="removeStep(index)">Remove</v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="12">
+            <v-text-field v-model="recipe.notes" label="Notes"></v-text-field>
           </v-col>
         </v-row>
 
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="submitRecipe">
       Create Recipe
-    </v-btn>
-
-    <v-btn color="error" class="mr-4" @click="reset">
-      Reset
     </v-btn>
   </v-form>
 </div>
@@ -40,14 +54,14 @@
 </template>
 
 <script>
-// import RecipeService from '../services/RecipeService'
+import RecipeService from '../services/RecipeService'
 export default {
   name: "CreateRecipeForm",
   props: [],
   data: () => ({
     valid: true,
     invalidSubmit: false,
-    recipes: {
+    recipe: {
       name: "",
       description: "",
       image: "",
@@ -56,8 +70,8 @@ export default {
         amount: "",
         unit: ""
       }],
-      steps: [{
-        instruction: ""
+      step: [{
+        description: ""
       }],
       notes: "",
     },
@@ -82,32 +96,42 @@ export default {
     ingredientAmountRules: [
       v => !!v || "Amount is required",
     ],
-    stepsRules: [
-      v => !!v || "Instructions are required",
-    ]
+    StepDescriptionRules: [
+      v => !!v || "An instruction is required",
+    ],
   }),
   mounted() {
   },
 
   methods: {
     addIngredient(){
-      this.recipes.ingredient.push({
+      this.recipe.ingredient.push({
           name: '',
           amount: '',
           unit: '',
       });
-      // eslint-disable-next-line no-console
-      console.log(this.recipes)
     },
     removeIngredient(index){
-      this.recipes.ingredient = this.recipes.ingredient.filter((value, i) => index !== i)
+      this.recipe.ingredient = this.recipe.ingredient.filter((value, i) => index !== i)
     },
-    submitRecipe() {
-      
-      // RecipeService.submitRecipe({
-
-      // });
-      this.$refs.form.reset();
+    addStep(){
+      this.recipe.step.push({
+          description: '',
+      });
+    },
+    removeStep(index){
+      this.recipe.step = this.recipe.step.filter((value, i) => index !== i)
+    },
+    async submitRecipe() {
+      event.preventDefault();
+      // eslint-disable-next-line no-console
+      console.log(this.recipe)
+      try {
+        await RecipeService.submitRecipe(this.recipe)
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err)
+      }
     },
     reset() {
       this.$refs.form.reset();
