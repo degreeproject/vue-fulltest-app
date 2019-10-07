@@ -1,15 +1,24 @@
-import axios from './RequestObject';
+import axios from './RequestObject'
 
-const RECIPES = 'api/recipe';
+const RECIPE = '/api/recipe'
 
 class RecipeService {
-  /**
-   * Gets necessary information for application receipt
-   */
-  static getRecipes(){
-    return axios.get(RECIPES)
-  }
-
+    static getRecipes(){
+        return axios.get(RECIPE).then(function(response) {
+            return {
+                ...response,
+            }
+        })
+    }
+    static getRecipe(id){
+        return axios.get(RECIPE + "/" + id).then(function(response) {
+            return {
+                ...response,
+            }
+        })
+    }
+    static submitRecipe(recipe){
+        return axios.post(RECIPE, recipe)
+    }
 }
-
 export default RecipeService;

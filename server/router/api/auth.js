@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     try {
         authenticated = await userService.authenticateUser(username, password);
     } catch (err) {
-        if (!(err instanceof Error)) {
+        if (!(err)) {
             return res.sendStatus(500);
         }
     }
@@ -42,10 +42,10 @@ router.get('/', async (req, res) => {
             message: "Successful login",
             access_token: token,
             token_type: 'Bearer',
-            name: this.username,
+            name: username,
         });
     } catch (err) {
-        if (!(err instanceof Error)) {
+        if (!(err)) {
             return res.status(500);
         }
     }

@@ -38,7 +38,6 @@ import AuthService from "../../services/AuthService.js";
 export default {
   name: "RegisterForm",
   props: [],
-  mounted() {},
   data: () => ({
     valid: true,
     invalidSubmit: false,

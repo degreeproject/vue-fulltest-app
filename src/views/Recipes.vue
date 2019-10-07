@@ -1,18 +1,18 @@
 <template>
   <div class="recipes">
     <h1>This is a recipe page</h1>
-    <Recipe></Recipe>
+    <Recipes></Recipes>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Recipe from '@/components/RecipeComponent.vue'
+import Recipes from '@/components/RecipesComponent.vue'
 
 export default {
   name: 'recipes',
   components: {
-    Recipe
+    Recipes
   }
 }
 </script>

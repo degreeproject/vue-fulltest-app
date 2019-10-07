@@ -7,9 +7,8 @@
     <!-- Fills in navbar which moves icons to the right -->
     <div class="flex-grow-1"></div>
 
-    <v-btn class="navbutton" light to="recipes">Recipes</v-btn>
+    <v-btn class="navbutton" light to="/recipes">Recipes</v-btn>
 
-    <v-btn class="navbutton" light to="calendar">Calendar</v-btn>
 
     <v-menu offset-y v-if="!loggedIn">
       <template v-slot:activator="{ on }">
