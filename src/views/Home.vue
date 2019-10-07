@@ -1,17 +1,21 @@
 <template>
   <div class="home">
-    <h1>This is a home page</h1>
+    <h1 v-if="!loggedIn">Not logged in</h1>
+    <h1 v-if="loggedIn">Logged in</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import Header from '@/components/HeaderComponent.vue'
-
+import {mapState} from 'vuex'
 export default {
   name: 'home',
   components: {
-    // Header
-  }
+  },
+  computed: {
+    ...mapState('userModule', ['user']),
+    loggedIn() {
+      return this.user.token !== null;
+    }
+  },
 }
 </script>

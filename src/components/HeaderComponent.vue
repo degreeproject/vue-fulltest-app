@@ -11,7 +11,7 @@
 
     <v-btn class="navbutton" light to="calendar">Calendar</v-btn>
 
-    <v-menu offset-y>
+    <v-menu offset-y v-if="!loggedIn">
       <template v-slot:activator="{ on }">
         <v-btn light v-on="on">User</v-btn>
       </template>
@@ -25,12 +25,37 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <v-btn v-if="loggedIn" class="navbutton" light @click="logout">Logout</v-btn>
   </v-app-bar>
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
 export default {
-  name: "HeaderComponent"
+  name: "HeaderComponent",
+  mounted() {
+    this.addTokenToState();
+  },
+  computed: {
+    ...mapState('userModule', ['user']),
+    loggedIn() {
+      return this.user.token !== null;
+    }
+  },
+  methods: {
+    ...mapActions('userModule', ['logOut', 'addToken']),
+    logout(){
+        this.logOut();
+        localStorage.clear();
+        this.$router.push('/login');
+    },
+    addTokenToState(){
+      if(localStorage.getItem('user')){
+      let token = JSON.parse(localStorage.getItem('user'))
+      this.addToken(token)
+    }
+    }
+  }
 };
 </script>
 

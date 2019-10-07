@@ -5,12 +5,11 @@ Vue.use(Vuex)
 
 const userModule = {
   namespaced: true,
-  // plugins: [vuexLocalStorage.plugin],
   state: {
     user: {
-      name: 'hellooooo from state',
+      name: '',
       token: null,
-    }
+    },
   },
   mutations: {
     logIn: (state, newUser) => {
@@ -19,6 +18,10 @@ const userModule = {
     logOut: (state) => {
       state.user.name = null;
       state.user.token = null;
+    },
+    addToken: (state, newToken) => {
+      state.user.name = newToken.name;
+      state.user.token = newToken.token;
     }
   },
   actions: {
@@ -31,6 +34,11 @@ const userModule = {
       commit
     }) => {
       commit('logOut');
+    },
+    addToken: ({
+      commit
+    }, payload) => {
+      commit('addToken', payload);
     }
   }
 }

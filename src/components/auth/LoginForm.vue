@@ -40,12 +40,15 @@ export default {
     async onSubmit(evt) {
       evt.preventDefault();
       try {
+        let user = null;
         await AuthService.loginUser(this.form).then(data => {
-          this.logIn({
+          user = {
             name: data.name,
             token: `${data.token_type} ${data.access_token}`
-          });
+          }
+          this.logIn(user);
         });
+        localStorage.setItem('user', JSON.stringify(user))
         this.$router.push("/home");
       } catch (err) {
         this.invalidSubmit = true;

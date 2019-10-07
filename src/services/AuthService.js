@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './RequestObject';
 
 const USER = 'api/user';
 const AUTH = 'api/auth'
