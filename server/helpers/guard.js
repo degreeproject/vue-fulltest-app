@@ -92,8 +92,6 @@ router.all(/.*/, async (req, res, next) => {
     try {
       const { username } = await decodeUsername(token);
       req.userUsername = username;
-      console.log(route)
-      console.log(method)
       if (allowedSelfAction(route, method)) {
         return next();
       }
