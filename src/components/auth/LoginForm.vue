@@ -24,9 +24,6 @@ import Store from "../../store";
 export default {
   name: "LoginForm",
   props: [],
-  mounted() {
-    Store.userModule;
-  },
   data: () => ({
     invalidSubmit: false,
     form: {
@@ -34,6 +31,9 @@ export default {
       password: ""
     }
   }),
+  mounted() {
+    Store.userModule;
+  },
 
   methods: {
     ...mapActions("userModule", ["logIn"]),
