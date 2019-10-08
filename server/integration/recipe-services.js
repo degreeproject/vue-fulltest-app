@@ -29,7 +29,7 @@ class RecipeService {
     try {
       const recipeCollection = await this.loadRecipeCollection();
       const recipe = await recipeCollection.findOne({id: id})
-      if (recipe.length === 0 || !recipe)
+      if (!recipe || recipe.length === 0)
         console.log("No recipes found in getRecipes")
       return recipe;
     } catch (err) {
