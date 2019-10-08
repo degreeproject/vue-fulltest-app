@@ -2,10 +2,10 @@
 <div>
   <span v-if="invalidSubmit">Something went wrong with the registration, please try again.</span>
   <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field v-model="recipe.name" :counter="30" :rules="nameRules" label="Title" required></v-text-field>
+      <v-text-field v-model="recipe.name" :counter="40" :rules="nameRules" label="Title" required></v-text-field>
         <v-row>
           <v-col cols="12" md="6">
-            <v-text-field v-model="recipe.description" :counter="30" :rules="descriptionRules" label="Description" required></v-text-field>
+            <v-text-field v-model="recipe.description" :counter="50" :rules="descriptionRules" label="Description" required></v-text-field>
           </v-col>
           <v-col cols="12" md="6">
             <v-text-field v-model="recipe.image" :rules="imageRules" label="Image URL" required></v-text-field>
@@ -30,7 +30,7 @@
         </v-row>
         <v-row v-for="(step, index) in recipe.step" :key="((index + 1) * 100)">
           <v-col cols="12" md="10">
-              <v-text-field v-model="step.description" :rules="ingredientNameRules" :label="'Instruction: ' + (index+1)" required></v-text-field>
+              <v-text-field v-model="step.description" :rules="StepDescriptionRules" :label="'Instruction: ' + (index+1)" required></v-text-field>
           </v-col>
           <v-col cols="12" md="2" v-if="index === 0">
               <v-btn color="primary" @click="addStep">Add</v-btn>
@@ -76,12 +76,12 @@ export default {
       notes: "",
     },
     nameRules: [
-      v => !!v || "A name is required",
-      v => (v && v.length <= 30) || "The name must be less than 30 characters"
+      v => !!v || "A title is required",
+      v => (v && v.length <= 40) || "The title must be less than 40 characters"
     ],
     descriptionRules: [
       v => !!v || "A description is required",
-      v => (v && v.length <= 30) || "The description must be less than 30 characters"
+      v => (v && v.length <= 50) || "The description must be less than 50 characters"
     ],
     imageRules: [
       v => !!v || "Image is required",
