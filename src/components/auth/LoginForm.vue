@@ -2,13 +2,11 @@
 <div>
   <span v-if="invalidSubmit">Something went wrong with the login, please try again.</span>
   <v-form ref="form" lazy-validation>
-      <v-text-field v-model="form.username" :counter="16" label="Username" required></v-text-field>
-      <v-text-field type="password" v-model="form.password" label="Password" required></v-text-field>
-      
+    <v-text-field v-model="form.username" :counter="16" label="Username" required></v-text-field>
+    <v-text-field type="password" v-model="form.password" label="Password" required></v-text-field>
     <v-btn color="success" class="mr-4" @click="onSubmit">
       Login
     </v-btn>
-
     <v-btn color="error" class="mr-4" @click="reset">
       Reset
     </v-btn>

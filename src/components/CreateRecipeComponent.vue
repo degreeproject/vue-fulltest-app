@@ -124,8 +124,6 @@ export default {
     },
     async submitRecipe() {
       event.preventDefault();
-      // eslint-disable-next-line no-console
-      console.log(this.recipe)
       try {
         await RecipeService.submitRecipe(this.recipe)
       } catch (err) {

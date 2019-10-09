@@ -30,10 +30,17 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
+import RecipeService from '../services/RecipeService'
 export default {
   name: "HeaderComponent",
+  data() {
+    return {
+      
+    }
+  },
   mounted() {
     this.addTokenToState();
+    this.addRecipeToState();
   },
   computed: {
     ...mapState('userModule', ['user']),
@@ -43,6 +50,7 @@ export default {
   },
   methods: {
     ...mapActions('userModule', ['logOut', 'addToken']),
+    ...mapActions('recipeModule', ['addRecipes']),
     logout(){
         this.logOut();
         localStorage.clear();
@@ -52,10 +60,18 @@ export default {
       if(localStorage.getItem('user')){
       let token = JSON.parse(localStorage.getItem('user'))
       this.addToken(token)
-    }
+      }
+    },
+    addRecipeToState(){
+      RecipeService.getRecipes()
+        .then((request) => {
+          this.addRecipes(request.data)
+        })
+        // eslint-disable-next-line no-console
+        .catch(console.log)
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

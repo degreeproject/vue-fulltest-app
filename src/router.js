@@ -25,12 +25,12 @@ const router = new Router({
       component: Recipes
     },
     {
-      path: '/recipe/create-recipe',
+      path: '/recipes/create-recipe',
       name: 'create-recipe',
       component: CreateRecipe
     },
     {
-      path: '/recipe/:id',
+      path: '/recipes/:id',
       name: 'recipe',
       component: Recipe
     },

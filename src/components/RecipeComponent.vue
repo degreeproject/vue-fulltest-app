@@ -96,13 +96,21 @@
         }
       },
       mounted() {
-        RecipeService.getRecipe(this.recipeId)
+        if(this.recipes){
+          const recipe = this.recipes.find((ele) => {
+            return ele.id === this.recipeId
+          })
+          this.recipe = recipe
+        }else{
+          RecipeService.getRecipe(this.recipeId)
           .then(res => {
             this.recipe = res.data;
           });
+        }
       },
       computed: {
         ...mapState('userModule', ['user']),
+        ...mapState('recipeModule', ['recipes']),
       },
       methods: {
         submitComment(){

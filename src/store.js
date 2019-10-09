@@ -42,10 +42,29 @@ const userModule = {
     }
   }
 }
+const recipeModule = {
+  namespaced: true,
+  state: {
+    recipes: []
+  },
+  mutations: {
+    addRecipes: (state, recipes) => {
+      state.recipes = recipes;
+    }
+  },
+  actions: {
+    addRecipes: ({
+      commit
+    }, payload) => {
+      commit('addRecipes', payload);
+    }
+  }
+}
 
 const store = new Vuex.Store({
   modules: {
-    userModule
+    userModule,
+    recipeModule
   }
 })
 
