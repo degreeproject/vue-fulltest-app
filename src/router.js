@@ -4,7 +4,6 @@ import Home from './views/Home.vue'
 import Recipes from './views/Recipes.vue'
 import Recipe from './views/Recipe.vue'
 import CreateRecipe from './views/CreateRecipe.vue'
-import Calendar from './views/Calendar.vue'
 import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 // import store from './store'
@@ -33,11 +32,6 @@ const router = new Router({
       path: '/recipes/:id',
       name: 'recipe',
       component: Recipe
-    },
-    {
-      path: '/calendar',
-      name: 'calendar',
-      component: Calendar
     },
     {
       path: '/login',
