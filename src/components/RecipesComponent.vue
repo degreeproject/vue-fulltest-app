@@ -1,7 +1,7 @@
 <template lang="html">
 
   <v-container class="grey lighten-5">
-    <v-btn dark fab top left color="blue" to="/recipe/create-recipe">
+    <v-btn dark fab top left color="blue" to="/recipes/create-recipe">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
     <v-row no-gutters>
