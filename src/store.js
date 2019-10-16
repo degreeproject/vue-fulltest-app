@@ -1,21 +1,21 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const userModule = {
   namespaced: true,
   state: {
     user: {
-      name: '',
-      token: null,
-    },
+      name: "",
+      token: null
+    }
   },
   mutations: {
     logIn: (state, newUser) => {
       state.user = newUser;
     },
-    logOut: (state) => {
+    logOut: state => {
       state.user.name = null;
       state.user.token = null;
     },
@@ -25,23 +25,17 @@ const userModule = {
     }
   },
   actions: {
-    logIn: ({
-      commit
-    }, payload) => {
-      commit('logIn', payload);
+    logIn: ({ commit }, payload) => {
+      commit("logIn", payload);
     },
-    logOut: ({
-      commit
-    }) => {
-      commit('logOut');
+    logOut: ({ commit }) => {
+      commit("logOut");
     },
-    addToken: ({
-      commit
-    }, payload) => {
-      commit('addToken', payload);
+    addToken: ({ commit }, payload) => {
+      commit("addToken", payload);
     }
   }
-}
+};
 const recipeModule = {
   namespaced: true,
   state: {
@@ -53,19 +47,17 @@ const recipeModule = {
     }
   },
   actions: {
-    addRecipes: ({
-      commit
-    }, payload) => {
-      commit('addRecipes', payload);
+    addRecipes: ({ commit }, payload) => {
+      commit("addRecipes", payload);
     }
   }
-}
+};
 
 const store = new Vuex.Store({
   modules: {
     userModule,
     recipeModule
   }
-})
+});
 
 export default store;

@@ -1,54 +1,54 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Recipes from './views/Recipes.vue'
-import Recipe from './views/Recipe.vue'
-import CreateRecipe from './views/CreateRecipe.vue'
-import Register from './views/Register.vue'
-import Login from './views/Login.vue'
-// import store from './store'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home.vue";
+import Recipes from "./views/Recipes.vue";
+import Recipe from "./views/Recipe.vue";
+import CreateRecipe from "./views/CreateRecipe.vue";
+import Register from "./views/Register.vue";
+import Login from "./views/Login.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes: [{
-      path: '/',
-      name: 'home',
+  routes: [
+    {
+      path: "/",
+      name: "home",
       component: Home
     },
     {
-      path: '/recipes',
-      name: 'recipes',
+      path: "/recipes",
+      name: "recipes",
       component: Recipes
     },
     {
-      path: '/recipes/create-recipe',
-      name: 'create-recipe',
+      path: "/recipes/create-recipe",
+      name: "create-recipe",
       component: CreateRecipe
     },
     {
-      path: '/recipes/:id',
-      name: 'recipe',
+      path: "/recipes/:id",
+      name: "recipe",
       component: Recipe
     },
     {
-      path: '/login',
-      name: 'login',
+      path: "/login",
+      name: "login",
       component: Login
     },
     {
-      path: '/register',
-      name: 'register',
+      path: "/register",
+      name: "register",
       component: Register
     },
     {
-      path: '*',
-      redirect: '/'
+      path: "*",
+      redirect: "/"
     }
   ]
-})
+});
 
 // router.beforeEach( async(to, from, next) => {
 //   let loggedIn = store.state.userModule.user.token !== null;

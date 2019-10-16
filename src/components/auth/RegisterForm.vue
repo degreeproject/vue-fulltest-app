@@ -2,24 +2,27 @@
 <div>
   <span v-if="invalidSubmit">Something went wrong with the registration, please try again.</span>
   <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field v-model="username" :counter="16" :rules="usernameRules" label="Username" required></v-text-field>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-text-field v-model="firstname" :counter="30" :rules="firstnameRules" label="Firstname" required></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field v-model="lastname" :counter="30" :rules="lastnameRules" label="Lastname" required></v-text-field>
-          </v-col>
-        </v-row>
-      <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-          <v-row>
-          <v-col cols="12" md="6">
-              <v-text-field type="password" v-model="password" :rules="passwordRules" label="Password" required></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-              <v-text-field type="password" v-model="repeatpassword" :rules="repeatPasswordRules" label="Repeat password" required></v-text-field>
-          </v-col>
-        </v-row>
+    <v-text-field v-model="username" :counter="16" :rules="usernameRules" label="Username" required></v-text-field>
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-text-field v-model="firstname" :counter="30" :rules="firstnameRules" label="Firstname" required>
+        </v-text-field>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field v-model="lastname" :counter="30" :rules="lastnameRules" label="Lastname" required></v-text-field>
+      </v-col>
+    </v-row>
+    <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-text-field type="password" v-model="password" :rules="passwordRules" label="Password" required>
+        </v-text-field>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field type="password" v-model="repeatpassword" :rules="repeatPasswordRules" label="Repeat password"
+          required></v-text-field>
+      </v-col>
+    </v-row>
 
     <v-btn :disabled="!valid" color="success" class="mr-4" @click="register">
       Register

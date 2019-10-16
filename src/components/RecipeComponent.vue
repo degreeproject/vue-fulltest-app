@@ -74,67 +74,66 @@
 </template>
 
 <script>
-    import RecipeService from "../services/RecipeService.js";
-    import {mapState} from 'vuex'
-    export default {
-      name: "RecipeComponent",
-      props: [],
-      data() {
-        return {
-          valid: true,
-          invalidSubmit: false,
-          recipe: {},
-          recipeId: this.$router.currentRoute.params.id,
-          comment: {
-            commentator: '',
-            comment: '',
-          },
-          commentRules: [
-          v => !!v || "A comment is required",
-          v => (v && v.length <= 300) || "The name must be less than 300 characters"
-        ],
-        }
+import RecipeService from "../services/RecipeService.js";
+import { mapState } from "vuex";
+export default {
+  name: "RecipeComponent",
+  props: [],
+  data() {
+    return {
+      valid: true,
+      invalidSubmit: false,
+      recipe: {},
+      recipeId: this.$router.currentRoute.params.id,
+      comment: {
+        commentator: "",
+        comment: ""
       },
-      mounted() {
-        if(this.recipes){
-          const recipe = this.recipes.find((ele) => {
-            return ele.id === this.recipeId
-          })
-          this.recipe = recipe
-        }else{
-          RecipeService.getRecipe(this.recipeId)
-          .then(res => {
-            this.recipe = res.data;
-          });
-        }
-      },
-      computed: {
-        ...mapState('userModule', ['user']),
-        ...mapState('recipeModule', ['recipes']),
-      },
-      methods: {
-        submitComment(){
-          let username = this.user.name
-          let comment = {
-            commentator: username,
-            comment: this.comment.comment
-          }
-          RecipeService.submitComment({
-              commentator: username,
-              comment: this.comment.comment,
-              recipe: this.recipe.id
-            })
-          .then(res => {
-            this.recipe.comments = this.recipe.comments.concat(comment)
-            return res;
-          });
-        }
-      },
+      commentRules: [
+        v => !!v || "A comment is required",
+        v =>
+          (v && v.length <= 300) || "The name must be less than 300 characters"
+      ]
     };
+  },
+  mounted() {
+    if (this.recipes) {
+      const recipe = this.recipes.find(ele => {
+        return ele.id === this.recipeId;
+      });
+      this.recipe = recipe;
+    } else {
+      RecipeService.getRecipe(this.recipeId).then(res => {
+        this.recipe = res.data;
+      });
+    }
+  },
+  computed: {
+    ...mapState("userModule", ["user"]),
+    ...mapState("recipeModule", ["recipes"])
+  },
+  methods: {
+    submitComment() {
+      let username = this.user.name;
+      let comment = {
+        commentator: username,
+        comment: this.comment.comment
+      };
+      RecipeService.submitComment({
+        commentator: username,
+        comment: this.comment.comment,
+        recipe: this.recipe.id
+      }).then(res => {
+        this.recipe.comments = this.recipe.comments.concat(comment);
+        return res;
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
-#commentator{
+#commentator {
   font-weight: bold;
 }
 </style>

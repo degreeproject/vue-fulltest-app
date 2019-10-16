@@ -9,7 +9,6 @@
 
     <v-btn class="navbutton" light to="/recipes">Recipes</v-btn>
 
-
     <v-menu offset-y v-if="!loggedIn">
       <template v-slot:activator="{ on }">
         <v-btn light v-on="on">User</v-btn>
@@ -29,49 +28,47 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
-import RecipeService from '../services/RecipeService'
+import { mapState, mapActions } from "vuex";
+import RecipeService from "../services/RecipeService";
 export default {
   name: "HeaderComponent",
   data() {
-    return {
-      
-    }
+    return {};
   },
   mounted() {
     this.addTokenToState();
     this.addRecipeToState();
   },
   computed: {
-    ...mapState('userModule', ['user']),
+    ...mapState("userModule", ["user"]),
     loggedIn() {
       return this.user.token !== null;
     }
   },
   methods: {
-    ...mapActions('userModule', ['logOut', 'addToken']),
-    ...mapActions('recipeModule', ['addRecipes']),
-    logout(){
-        this.logOut();
-        localStorage.clear();
-        this.$router.push('/login');
+    ...mapActions("userModule", ["logOut", "addToken"]),
+    ...mapActions("recipeModule", ["addRecipes"]),
+    logout() {
+      this.logOut();
+      localStorage.clear();
+      this.$router.push("/login");
     },
-    addTokenToState(){
-      if(localStorage.getItem('user')){
-      let token = JSON.parse(localStorage.getItem('user'))
-      this.addToken(token)
+    addTokenToState() {
+      if (localStorage.getItem("user")) {
+        let token = JSON.parse(localStorage.getItem("user"));
+        this.addToken(token);
       }
     },
-    addRecipeToState(){
+    addRecipeToState() {
       RecipeService.getRecipes()
-        .then((request) => {
-          this.addRecipes(request.data)
+        .then(request => {
+          this.addRecipes(request.data);
         })
         // eslint-disable-next-line no-console
-        .catch(console.log)
+        .catch(console.log);
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

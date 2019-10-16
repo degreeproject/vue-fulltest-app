@@ -6,16 +6,15 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 export default {
-  name: 'home',
-  components: {
-  },
+  name: "home",
+  components: {},
   computed: {
-    ...mapState('userModule', ['user']),
+    ...mapState("userModule", ["user"]),
     loggedIn() {
       return this.user.token !== null;
     }
-  },
-}
+  }
+};
 </script>

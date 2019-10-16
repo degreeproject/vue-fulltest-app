@@ -19,35 +19,36 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
-  import RecipeService from "../services/RecipeService.js";
-  export default {
-    name: "RecipesComponent",
-    props: [],
-    data() {
-      return {
-        localRecipes: [],
-      };
-    },
-    mounted() {
-    if(this.recipes){
+import { mapState } from "vuex";
+import RecipeService from "../services/RecipeService.js";
+export default {
+  name: "RecipesComponent",
+  props: [],
+  data() {
+    return {
+      localRecipes: []
+    };
+  },
+  mounted() {
+    if (this.recipes) {
       this.localRecipes = this.recipes;
-     }else{
+    } else {
       RecipeService.getRecipes()
         .then(res => {
           this.localRecipes = res.data;
         })
         // eslint-disable-next-line no-console
-        .catch(console.log)
-     }
-    },
-    methods: {},
-    computed: {
-    ...mapState('recipeModule', ['recipes']),
+        .catch(console.log);
     }
-  };
+  },
+  methods: {},
+  computed: {
+    ...mapState("recipeModule", ["recipes"])
+  }
+};
 </script>
 
 <style scoped>
-  .RecipeComponent {}
+.RecipeComponent {
+}
 </style>
