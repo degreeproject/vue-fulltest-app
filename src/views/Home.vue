@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1 v-if="!loggedIn">Not logged in</h1>
-    <h1 v-if="loggedIn">Welcome {{this.user.name}}</h1>
+    <h1 v-if="loggedIn">Hello {{this.user.name}}, welcome to TastyRecipes!</h1>
   </div>
 </template>
 

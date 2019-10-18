@@ -35,10 +35,17 @@ export default {
   data() {
     return {};
   },
+  /**
+   * Adds the authentication token and recipes to 
+   * global state for quicker access
+   */
   mounted() {
     this.addTokenToState();
     this.addRecipeToState();
   },
+  /**
+   * Checks if the user is logged in and changes view accordingly
+   */
   computed: {
     ...mapState("userModule", ["user"]),
     loggedIn() {
@@ -48,17 +55,27 @@ export default {
   methods: {
     ...mapActions("userModule", ["logOut", "addToken"]),
     ...mapActions("recipeModule", ["addRecipes"]),
+    /**
+     * Logs out the user by removing authentication token from global state and local web storage
+     * and then forcing the user back to the login screen 
+     */
     logout() {
       this.logOut();
       localStorage.clear();
       this.$router.push("/login");
     },
+    /**
+     * Adds the authentication token to global state
+     */
     addTokenToState() {
       if (localStorage.getItem("user")) {
         let token = JSON.parse(localStorage.getItem("user"));
         this.addToken(token);
       }
     },
+    /**
+     * Adds the recipes to global state for quicker access
+     */
     addRecipeToState() {
       RecipeService.getRecipes()
         .then(request => {

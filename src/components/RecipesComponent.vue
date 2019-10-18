@@ -30,6 +30,10 @@ export default {
     };
   },
   mounted() {
+    /**
+     * Checks if the recipes exists in global state and
+     * if true uses them, otherwise gets them from the database.
+     */
     if (this.recipes) {
       this.localRecipes = this.recipes;
     } else {

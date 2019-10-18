@@ -92,6 +92,10 @@ export default {
     };
   },
   mounted() {
+    /**
+     * When component gets mounted checks if recipes exist in global state and
+     * uses them if true, otherwise fetch them from the database.
+     */
     if (this.recipes.length !== 0) {
       const recipe = this.recipes.find(ele => {
         return ele.id === this.recipeId;
@@ -108,6 +112,10 @@ export default {
     ...mapState("recipeModule", ["recipes"])
   },
   methods: {
+    /**
+     * Adds a comment to the recipe in the database with
+     * the corresponding id of the recipe the user is on.
+     */
     submitComment() {
       let username = this.user.name;
       let comment = {

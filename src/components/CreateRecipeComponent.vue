@@ -101,9 +101,10 @@ export default {
     ingredientAmountRules: [v => !!v || "Amount is required"],
     StepDescriptionRules: [v => !!v || "An instruction is required"]
   }),
-  mounted() {},
-
   methods: {
+    /**
+     * Adds a new set of input fields to the ingredient input
+     */
     addIngredient() {
       this.recipe.ingredient.push({
         name: "",
@@ -111,16 +112,27 @@ export default {
         unit: ""
       });
     },
+    /**
+     * Removes a set of input fields from the ingredient input where the id matches
+     * @param index The index of the ingredient to remove
+     */
     removeIngredient(index) {
       this.recipe.ingredient = this.recipe.ingredient.filter(
         (value, i) => index !== i
       );
     },
+    /**
+     * Adds a new input field to the instructions input
+     */
     addStep() {
       this.recipe.step.push({
         description: ""
       });
     },
+    /**
+     * Removes a input field from the instructions input
+     * @param index The index of the instruction to remove
+     */
     removeStep(index) {
       this.recipe.step = this.recipe.step.filter((value, i) => index !== i);
     },
@@ -133,11 +145,13 @@ export default {
         console.log(err);
       }
     },
+    /**
+     * Resets the form
+     */
     reset() {
       this.$refs.form.reset();
     }
-  },
-  computed: {}
+  }
 };
 </script>
 

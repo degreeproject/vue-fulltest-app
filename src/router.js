@@ -6,7 +6,7 @@ import Recipe from "./views/Recipe.vue";
 import CreateRecipe from "./views/CreateRecipe.vue";
 import Register from "./views/Register.vue";
 import Login from "./views/Login.vue";
-
+import store from "./store"
 Vue.use(Router);
 
 const router = new Router({
@@ -50,16 +50,16 @@ const router = new Router({
   ]
 });
 
-// router.beforeEach( async(to, from, next) => {
-//   let loggedIn = store.state.userModule.user.token !== null;
-//   if (to.fullPath === '/login' || to.fullPath === '/register') {
-//     next();
-//   } else {
-//     if (!loggedIn) {
-//       router.push('/login');
-//     }
-//   }
-//   next();
-// });
+router.beforeEach( async(to, from, next) => {
+  let loggedIn = store.state.userModule.user.token !== null;
+  if (to.fullPath !== '/recipes/create-recipe') {
+    next();
+  } else {
+    if (!loggedIn) {
+      router.push('/login');
+    }
+  }
+  next();
+});
 
 export default router;

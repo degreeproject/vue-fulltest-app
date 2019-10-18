@@ -73,6 +73,10 @@ export default {
   }),
 
   methods: {
+    /**
+     * Registers the user by taking the input from state and sending it to the server.
+     * Then clears the form
+     */
     register() {
       AuthService.registerUser({
         username: this.username,
@@ -81,13 +85,20 @@ export default {
         email: this.email,
         password: this.password
       });
-      this.$refs.form.reset();
+      this.reset();
     },
+    /**
+     * Resets the form inputs
+     */
     reset() {
       this.$refs.form.reset();
     }
   },
   computed: {
+    /**
+     * Validates if the passwords are of sufficient
+     * length and if the two password inputs match.
+     */
     repeatPasswordRules() {
       return [
         v => !!v || "Password is required",

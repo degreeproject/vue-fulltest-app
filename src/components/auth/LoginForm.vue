@@ -34,7 +34,15 @@ export default {
   },
 
   methods: {
+    /**
+     * Maps the state to this component so that it is usable
+     */
     ...mapActions("userModule", ["logIn"]),
+
+    /**
+     * Authenticates the user and on success adds the 
+     * user as logged in in global state and in local storage
+     */
     async onSubmit(evt) {
       evt.preventDefault();
       try {
