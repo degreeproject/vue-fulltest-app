@@ -59,25 +59,20 @@
         </v-form>
 
 
-
-      <v-row no-gutters cols="12">
-        <v-col sm="12">
-          <h3>Comments</h3>
-          <v-list-item-content v-for="(comment, index) in this.recipe.comments" :key="index">
-            <v-list-item-title id="commentator">{{comment.commentator}}</v-list-item-title>
-            <v-list-item-content>{{comment.comment}}</v-list-item-content>
-          </v-list-item-content>
-        </v-col>
-      </v-row>
+      <CommentComponent :comments="this.recipe.comments"/>
     </v-container>
 
 </template>
 
 <script>
 import RecipeService from "../services/RecipeService.js";
+import CommentComponent from "./comment/CommentComponent"
 import { mapState } from "vuex";
 export default {
   name: "RecipeComponent",
+  components:{
+    CommentComponent,
+  },
   props: [],
   data() {
     return {
@@ -97,7 +92,7 @@ export default {
     };
   },
   mounted() {
-    if (this.recipes) {
+    if (this.recipes.length !== 0) {
       const recipe = this.recipes.find(ele => {
         return ele.id === this.recipeId;
       });
@@ -133,7 +128,5 @@ export default {
 </script>
 
 <style scoped>
-#commentator {
-  font-weight: bold;
-}
+
 </style>
