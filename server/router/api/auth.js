@@ -8,6 +8,11 @@ const {
 } = require('express-validator');
 
 
+
+/**
+ * GET: Authenticates based on the credentials that got passed in the request. 
+ * Also returns a token to the user for future authentications.
+ */
 router.get('/', async (req, res) => {
     const result = validationResult(req);
 
@@ -22,7 +27,7 @@ router.get('/', async (req, res) => {
     try {
         authenticated = await userService.authenticateUser(username, password);
     } catch (err) {
-        if (!(err)) {
+        if (!(err instanceof Error)) {
             return res.sendStatus(500);
         }
     }
@@ -45,7 +50,7 @@ router.get('/', async (req, res) => {
             name: username,
         });
     } catch (err) {
-        if (!(err)) {
+        if (!(err instanceof Error)) {
             return res.status(500);
         }
     }
