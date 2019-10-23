@@ -67,16 +67,16 @@ export PORT=yourport
 export NODE_ENV=developmentorproduction
 ```
 
-####Vuetify
+#### Vuetify
 Vuetify has been used in order to create the CSS for the web application. This library is based on Material Design and is great for keeping the application looking presentable without much effort.
 
-####Vue Router
+#### Vue Router
 In order to navigate to different pages in a Single Page Application, the Vue Router is used. 
 
-####Vuex
+#### Vuex
 To manage state which the whole or multiple parts of the application shares, Vuex is used. This allows for a central but encapsulated storage which is easily debuggable during development.
 
-####Axios
+#### Axios
 In order to handle HTTP requests a third-party package known as Axios is used. Axios handles the HTTP requests using promises which is how it manages to handle the HTTP request asynchronously. 
 
 ## Back-end
@@ -260,7 +260,7 @@ Method | Route | Description | Minimum Permissions
   "comments": [],
 }
 ```
-#####Response
+##### Response
 ```json
 {
   "message": "Recipe successfully created!"
