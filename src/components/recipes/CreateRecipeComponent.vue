@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import RecipeService from "../services/RecipeService";
+import RecipeService from "../../services/RecipeService";
 export default {
   name: "CreateRecipeForm",
   props: [],

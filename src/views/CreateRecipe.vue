@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import CreateRecipe from "@/components/CreateRecipeComponent.vue";
+import CreateRecipe from "@/components/recipes/CreateRecipeComponent.vue";
 
 export default {
   name: "recipe",

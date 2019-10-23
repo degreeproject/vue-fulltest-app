@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import RecipeService from "../services/RecipeService.js";
-import CommentComponent from "./comment/CommentComponent"
+import RecipeService from "../../services/RecipeService.js";
+import CommentComponent from "../comment/CommentComponent"
 import { mapState } from "vuex";
 export default {
   name: "RecipeComponent",
