@@ -135,7 +135,7 @@ As previously stated we have the three endpoints that we can utilize, these look
 
 Method | Route | Description | Minimum Permissions
 ------------ | ------------- | ------------- | ------------- 
- | **POST** | / | Authenticates a user and gives it a token which it can use to authorize itself | Unauthorized
+ | **POST** | / | Authenticates a user and gives it a token which it can use to re-authorize itself | Unauthorized
 
 
 #### Usage
