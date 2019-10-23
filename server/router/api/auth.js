@@ -5,7 +5,7 @@ const router = express.Router();
 const userService = require('../../integration/user-services');
 
 /**
- * GET: Authenticates based on the credentials that got passed in the request. 
+ * POST: Authenticates based on the credentials that got passed in the request. 
  * Also returns a token to the user for future authentications.
  */
 router.post('/', async (req, res) => {
